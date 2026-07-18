@@ -137,9 +137,6 @@ function Header() {
   }, [])
 
   useEffect(() => {
-    const sections = navItems
-      .map((item) => document.querySelector<HTMLElement>(item.href))
-      .filter((section): section is HTMLElement => Boolean(section))
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
@@ -147,8 +144,20 @@ function Header() {
       },
       { rootMargin: "-25% 0px -60%", threshold: [0.05, 0.35, 0.65] },
     )
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+    const observeNavigationSections = () => {
+      navItems.forEach((item) => {
+        const section = document.querySelector<HTMLElement>(item.href)
+        if (section) observer.observe(section)
+      })
+    }
+    observeNavigationSections()
+    const mutationObserver = new MutationObserver(observeNavigationSections)
+    const main = document.querySelector("main")
+    if (main) mutationObserver.observe(main, { childList: true, subtree: true })
+    return () => {
+      observer.disconnect()
+      mutationObserver.disconnect()
+    }
   }, [])
 
   useEffect(() => {
