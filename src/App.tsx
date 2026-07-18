@@ -17,8 +17,10 @@ import {
   X,
 } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react"
-import { useEffect, useRef, useState } from "react"
+import { lazy, Suspense, useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 import { BeforeAfter } from "@/components/BeforeAfter"
+import { FaqSection } from "@/components/FaqSection"
 import { LegalSection } from "@/components/LegalSection"
 import { PortfolioCarousel, type Project } from "@/components/PortfolioCarousel"
 import { QuoteRequestForm } from "@/components/QuoteRequestForm"
@@ -29,11 +31,15 @@ const EMAIL = "solestravaux@gmail.com"
 const PHONE_DISPLAY = "06 46 04 06 59"
 const PHONE_LINK = "+33646040659"
 
+const ServiceAreaMap = lazy(() =>
+  import("@/components/ServiceAreaMap").then((module) => ({ default: module.ServiceAreaMap })),
+)
+
 const navItems = [
   { label: "Accueil", href: "#accueil" },
   { label: "Expertises", href: "#expertises" },
   { label: "Réalisations", href: "#realisations" },
-  { label: "Méthode", href: "#methode" },
+  { label: "Zone", href: "#zone" },
   { label: "Devis", href: "#devis" },
 ]
 
@@ -80,6 +86,7 @@ const projects: Project[] = [
   {
     title: "Élévation & gros œuvre",
     category: "Maçonnerie générale",
+    group: "Gros œuvre",
     description: "Une structure exécutée avec rigueur, du premier traçage jusqu’aux ouvrages prêts à recevoir les finitions.",
     image: "/images/project-masonry.webp",
     alt: "Chantier de maçonnerie et de gros œuvre",
@@ -87,6 +94,7 @@ const projects: Project[] = [
   {
     title: "Toiture bien protégée",
     category: "Couverture & zinguerie",
+    group: "Toiture",
     description: "Une intervention pensée pour la durabilité de la toiture et la bonne gestion des eaux pluviales.",
     image: "/images/project-roofing.webp",
     alt: "Travaux de couverture sur une toiture",
@@ -94,6 +102,7 @@ const projects: Project[] = [
   {
     title: "Volumes restructurés",
     category: "Plaquisterie",
+    group: "Intérieurs",
     description: "Cloisons et doublages redessinent l’espace avec des aplombs propres et des supports prêts à finir.",
     image: "/images/project-interior.webp",
     alt: "Artisan travaillant sur un aménagement intérieur",
@@ -101,6 +110,7 @@ const projects: Project[] = [
   {
     title: "Pose nette, lignes durables",
     category: "Carrelage & finitions",
+    group: "Finitions",
     description: "Calepinage, alignements et joints réguliers : la qualité finale se joue dans chaque détail de pose.",
     image: "/images/project-tiling.webp",
     alt: "Carrelage mural aux finitions contemporaines",
@@ -154,34 +164,36 @@ function Header() {
   }, [isOpen])
 
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
-      <a className="brand" href="#accueil" aria-label="Soles Travaux, retour à l’accueil">
-        <span className="brand__mark">S</span>
-        <span className="brand__name">Soles<span>Travaux</span></span>
-      </a>
+    <>
+      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+        <a className="brand" href="#accueil" aria-label="Soles Travaux, retour à l’accueil">
+          <span className="brand__mark">S</span>
+          <span className="brand__name">Soles<span>Travaux</span></span>
+        </a>
 
-      <nav className="desktop-nav" aria-label="Navigation principale">
-        {navItems.map((item) => {
-          const itemId = item.href.slice(1)
-          return (
-            <a href={item.href} className={active === itemId ? "is-active" : ""} key={item.href}>
-              {active === itemId && <motion.span className="desktop-nav__lamp" layoutId="nav-lamp" />}
-              <span>{item.label}</span>
-            </a>
-          )
-        })}
-      </nav>
+        <nav className="desktop-nav" aria-label="Navigation principale">
+          {navItems.map((item) => {
+            const itemId = item.href.slice(1)
+            return (
+              <a href={item.href} className={active === itemId ? "is-active" : ""} key={item.href}>
+                {active === itemId && <motion.span className="desktop-nav__lamp" layoutId="nav-lamp" />}
+                <span>{item.label}</span>
+              </a>
+            )
+          })}
+        </nav>
 
-      <div className="header-actions">
-        <a className="header-phone" href={`tel:${PHONE_LINK}`}><Phone /><span><small>Appeler</small>{PHONE_DISPLAY}</span></a>
-        <Button size="sm" asChild><a href="#devis">Devis en ligne</a></Button>
-      </div>
-      <div className="mobile-actions">
-        <a href={`tel:${PHONE_LINK}`} aria-label={`Appeler Soles Travaux au ${PHONE_DISPLAY}`}><Phone /></a>
-        <button className="menu-button" type="button" onClick={() => setIsOpen(true)} aria-label="Ouvrir le menu" aria-expanded={isOpen}><Menu /></button>
-      </div>
+        <div className="header-actions">
+          <a className="header-phone" href={`tel:${PHONE_LINK}`}><Phone /><span><small>Appeler</small>{PHONE_DISPLAY}</span></a>
+          <Button size="sm" asChild><a href="#devis">Devis en ligne</a></Button>
+        </div>
+        <div className="mobile-actions">
+          <a href={`tel:${PHONE_LINK}`} aria-label={`Appeler Soles Travaux au ${PHONE_DISPLAY}`}><Phone /></a>
+          <button className="menu-button" type="button" onClick={() => setIsOpen(true)} aria-label="Ouvrir le menu" aria-expanded={isOpen}><Menu /></button>
+        </div>
+      </header>
 
-      <AnimatePresence>
+      {createPortal(<AnimatePresence>
         {isOpen && (
           <motion.div
             className="mobile-menu"
@@ -214,8 +226,8 @@ function Header() {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
-    </header>
+      </AnimatePresence>, document.body)}
+    </>
   )
 }
 
@@ -322,7 +334,7 @@ function App() {
         <section id="realisations" className="portfolio section section--black">
           <div className="shell">
             <div className="section-heading section-heading--portfolio">
-              <div><span className="eyebrow">Portfolio</span><h2>Des espaces<br /><em>faits pour vivre.</em></h2></div>
+              <div><span className="eyebrow">Portfolio par métier</span><h2>Le travail.<br /><em>Dans le détail.</em></h2></div>
               <p>Photographies d’ambiance temporaires, à remplacer progressivement par les vrais chantiers de Soles Travaux.</p>
             </div>
             <PortfolioCarousel projects={projects} />
@@ -355,12 +367,18 @@ function App() {
           </div>
         </section>
 
+        <Suspense fallback={<div className="service-area__loading" aria-hidden="true" />}>
+          <ServiceAreaMap />
+        </Suspense>
+
         <section className="promise section section--gold">
           <div className="shell promise__grid">
             <div><HardHat /><span>Soles Travaux</span></div>
             <blockquote>“Un bâtiment solide se reconnaît à ce que l’on voit — et surtout à tout ce qui a été bien fait derrière.”</blockquote>
           </div>
         </section>
+
+        <FaqSection />
 
         <section id="devis" className="contact section section--black">
           <div className="shell contact__grid">

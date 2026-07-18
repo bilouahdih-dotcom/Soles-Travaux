@@ -29,6 +29,7 @@ export function LegalSection() {
           <p><strong>Données concernées :</strong> identité, coordonnées, localisation approximative du chantier, caractéristiques du projet et canal de contact choisi.</p>
           <p><strong>Finalité et base légale :</strong> transmettre, étudier et répondre à une demande de devis, au titre des mesures précontractuelles demandées par la personne.</p>
           <p><strong>Destinataires :</strong> SOLES et, uniquement pour l’hébergement et l’acheminement technique du message, Vercel et Resend agissant comme prestataires. Les informations ne sont ni vendues ni utilisées pour de la prospection par des tiers.</p>
+          <p><strong>Carte :</strong> la carte de zone est fournie à partir des tuiles d’OpenStreetMap. Elles ne sont demandées qu’à l’approche de la section. OpenStreetMap reçoit alors les données techniques usuelles de la requête, notamment l’adresse IP et le référent.</p>
           <p><strong>Conservation :</strong> aucune base commerciale n’est créée par ce site. La demande transite par la fonction sécurisée puis par Resend et la messagerie de SOLES. Les données d’un prospect sans contrat pourront être conservées jusqu’à trois ans après le dernier contact ; les données devenues contractuelles suivent les durées légales applicables.</p>
           <p><strong>Transferts hors UE :</strong> Vercel et Resend sont des prestataires américains. Les transferts doivent être encadrés par leurs mécanismes contractuels et garanties de protection applicables lors de l’ouverture des comptes de production.</p>
           <p><strong>Vos droits :</strong> accès, rectification, effacement, limitation, opposition et, lorsque applicable, portabilité. Adressez votre demande à solestravaux@gmail.com. Vous pouvez ensuite saisir la CNIL si vous estimez que vos droits ne sont pas respectés.</p>
@@ -45,8 +46,9 @@ export function LegalSection() {
           <p>Cette version n’utilise aucun cookie publicitaire, aucun outil de mesure d’audience et aucun traceur soumis au consentement. Aucun bandeau de consentement n’est donc affiché.</p>
           <p>Les photographies de démonstration doivent être remplacées par les réalisations réelles de Soles Travaux avant publication. Elles sont auto-hébergées dans le projet afin de limiter les appels à des services tiers.</p>
           <p>Resend est sollicité uniquement lorsque l’utilisateur envoie volontairement le formulaire. Les e-mails sont transactionnels et ne servent pas à inscrire le demandeur à une liste marketing.</p>
+          <p>La carte OpenStreetMap est chargée uniquement lorsque l’internaute approche de la section « Zone d’intervention ». Aucun cookie publicitaire ou de mesure d’audience n’est ajouté par le site. Les règles de confidentialité d’OpenStreetMap s’appliquent aux tuiles cartographiques.</p>
           <p>Les liens vers Google Maps, l’application e-mail ou le téléphone ne s’activent qu’après une action volontaire. Leur utilisation est ensuite régie par les politiques des services choisis par l’utilisateur.</p>
-          <p>Si un outil d’analyse, une carte intégrée, une vidéo ou un autre traceur non essentiel est ajouté ultérieurement, il devra rester bloqué jusqu’au consentement préalable de l’internaute.</p>
+          <p>Si un outil d’analyse, une vidéo ou un autre traceur non essentiel est ajouté ultérieurement, il devra rester bloqué jusqu’au consentement préalable de l’internaute.</p>
           <p className="legal-modal__date">Dernière mise à jour : 19 juillet 2026.</p>
         </article>
       </section>

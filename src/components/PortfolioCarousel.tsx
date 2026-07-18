@@ -1,11 +1,12 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 
 export interface Project {
   title: string
   category: string
+  group: string
   description: string
   image: string
   alt: string
@@ -16,13 +17,20 @@ interface PortfolioCarouselProps {
 }
 
 export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
+  const [activeGroup, setActiveGroup] = useState("Tous")
   const [index, setIndex] = useState(0)
   const [direction, setDirection] = useState(1)
   const reduceMotion = useReducedMotion()
 
+  const groups = useMemo(() => ["Tous", ...Array.from(new Set(projects.map((project) => project.group)))], [projects])
+  const visibleProjects = useMemo(
+    () => activeGroup === "Tous" ? projects : projects.filter((project) => project.group === activeGroup),
+    [activeGroup, projects],
+  )
+
   const move = (nextIndex: number) => {
-    setDirection(nextIndex > index || (index === projects.length - 1 && nextIndex === 0) ? 1 : -1)
-    setIndex((nextIndex + projects.length) % projects.length)
+    setDirection(nextIndex > index || (index === visibleProjects.length - 1 && nextIndex === 0) ? 1 : -1)
+    setIndex((nextIndex + visibleProjects.length) % visibleProjects.length)
   }
 
   const previous = () => move(index - 1)
@@ -40,11 +48,29 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
         if (event.key === "ArrowRight") next()
       }}
     >
+      <div className="portfolio-carousel__filters" aria-label="Filtrer les réalisations par métier">
+        {groups.map((group) => (
+          <button
+            type="button"
+            className={activeGroup === group ? "is-active" : ""}
+            aria-pressed={activeGroup === group}
+            onClick={() => {
+              setActiveGroup(group)
+              setIndex(0)
+              setDirection(1)
+            }}
+            key={group}
+          >
+            {group}
+          </button>
+        ))}
+      </div>
+
       <div className="portfolio-carousel__viewport">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.article
             className="project-slide"
-            key={projects[index].title}
+            key={`${activeGroup}-${visibleProjects[index].title}`}
             custom={direction}
             initial={reduceMotion ? false : { opacity: 0, x: direction * 90, scale: 0.98 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -60,17 +86,17 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
           >
             <div className="project-slide__media">
               <img
-                src={projects[index].image}
-                alt={projects[index].alt}
+                src={visibleProjects[index].image}
+                alt={visibleProjects[index].alt}
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
               />
-              <span className="project-slide__count">{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
+              <span className="project-slide__count">{String(index + 1).padStart(2, "0")} / {String(visibleProjects.length).padStart(2, "0")}</span>
             </div>
             <div className="project-slide__copy" aria-live="polite">
-              <span className="eyebrow">{projects[index].category}</span>
-              <h3>{projects[index].title}</h3>
-              <p>{projects[index].description}</p>
+              <span className="eyebrow">{visibleProjects[index].category}</span>
+              <h3>{visibleProjects[index].title}</h3>
+              <p>{visibleProjects[index].description}</p>
             </div>
           </motion.article>
         </AnimatePresence>
@@ -86,7 +112,7 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
           </Button>
         </div>
         <div className="portfolio-carousel__dots" aria-label="Choisir une réalisation">
-          {projects.map((project, projectIndex) => (
+          {visibleProjects.map((project, projectIndex) => (
             <button
               type="button"
               aria-current={projectIndex === index ? "true" : undefined}
