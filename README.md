@@ -2,6 +2,8 @@
 
 Site vitrine React, TypeScript et Vite, composé avec shadcn/ui et des interactions inspirées de 21st.dev.
 
+Production : https://soles-travaux.vercel.app
+
 ## Lancer le site
 
 ```bash
@@ -38,12 +40,12 @@ Le serveur Vite seul ne simule pas la fonction `/api/devis`. Tester l’envoi av
 
 La fonction vérifie l’origine, le format et la taille des données, limite la fréquence des demandes, applique un honeypot antispam et utilise des clés d’idempotence pour éviter les doubles envois. Les dépendances de production passent `npm audit --omit=dev` sans vulnérabilité connue.
 
-## À confirmer avant publication
+## À finaliser
 
 - domaine définitif et adresse d’envoi Resend ;
 - photographies des vrais chantiers ;
-- zone d’intervention exacte ;
 - assurances, qualifications et avis clients vérifiables ;
-- hébergement Vercel définitif dans les mentions légales.
+
+Les visuels temporaires du portfolio sont crédités individuellement et proviennent de Pexels. Ils ne sont pas présentés comme des chantiers réalisés par Soles Travaux.
 
 Informations professionnelles intégrées d’après l’attestation RNE fournie : SOLES, SIREN 951 560 846, SIRET 951 560 846 00010, APE 4399C, siège à Arles.

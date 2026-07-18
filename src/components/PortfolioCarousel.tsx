@@ -10,6 +10,7 @@ export interface Project {
   description: string
   image: string
   alt: string
+  sourceUrl: string
 }
 
 interface PortfolioCarouselProps {
@@ -61,7 +62,8 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
             }}
             key={group}
           >
-            {group}
+            {activeGroup === group && <motion.span className="portfolio-carousel__filter-lamp" layoutId="portfolio-filter" />}
+            <span>{group}</span>
           </button>
         ))}
       </div>
@@ -72,9 +74,9 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
             className="project-slide"
             key={`${activeGroup}-${visibleProjects[index].title}`}
             custom={direction}
-            initial={reduceMotion ? false : { opacity: 0, x: direction * 90, scale: 0.98 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: direction * -90, scale: 0.98 }}
+            initial={reduceMotion ? false : { opacity: 0, x: direction * 70, scale: 0.985, clipPath: direction > 0 ? "inset(0 10% 0 0)" : "inset(0 0 0 10%)" }}
+            animate={{ opacity: 1, x: 0, scale: 1, clipPath: "inset(0 0 0 0)" }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, x: direction * -70, scale: 0.985, clipPath: direction > 0 ? "inset(0 0 0 10%)" : "inset(0 10% 0 0)" }}
             transition={{ duration: 0.58, ease: [0.16, 1, 0.3, 1] }}
             drag={reduceMotion ? false : "x"}
             dragConstraints={{ left: 0, right: 0 }}
@@ -88,6 +90,8 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
               <img
                 src={visibleProjects[index].image}
                 alt={visibleProjects[index].alt}
+                width="1800"
+                height="1200"
                 loading={index === 0 ? "eager" : "lazy"}
                 decoding="async"
               />
@@ -97,6 +101,7 @@ export function PortfolioCarousel({ projects }: PortfolioCarouselProps) {
               <span className="eyebrow">{visibleProjects[index].category}</span>
               <h3>{visibleProjects[index].title}</h3>
               <p>{visibleProjects[index].description}</p>
+              <a href={visibleProjects[index].sourceUrl} target="_blank" rel="noreferrer noopener">Photo d’illustration · Pexels</a>
             </div>
           </motion.article>
         </AnimatePresence>

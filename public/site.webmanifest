@@ -1,0 +1,17 @@
+{
+  "name": "Soles Travaux",
+  "short_name": "Soles Travaux",
+  "description": "Artisan du bâtiment à Arles — maçonnerie, toiture et second œuvre.",
+  "lang": "fr-FR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090909",
+  "theme_color": "#090909",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

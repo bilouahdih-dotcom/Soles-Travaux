@@ -7,6 +7,7 @@ import { Circle, CircleMarker, MapContainer, Popup, ScaleControl, TileLayer, Zoo
 
 const CENTER: [number, number] = [43.6998359, 4.627985]
 const RADIUS_METERS = 70_000
+const NEARBY_CITIES = ["Arles", "Tarascon", "Beaucaire", "Nîmes", "Avignon", "Saint-Rémy-de-Provence", "Salon-de-Provence"]
 
 export function ServiceAreaMap() {
   const mapRef = useRef<HTMLDivElement>(null)
@@ -22,7 +23,10 @@ export function ServiceAreaMap() {
           <div className="service-area__metric" aria-label="Rayon d’intervention de 70 kilomètres">
             <strong>70</strong><span>KM<br />DE RAYON</span>
           </div>
-          <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+S%C3%A9gonaux+13200+Arles" target="_blank" rel="noreferrer noopener">
+          <ul className="service-area__cities" aria-label="Principales villes desservies">
+            {NEARBY_CITIES.map((city) => <li key={city}>{city}</li>)}
+          </ul>
+          <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+Segonnaux+13200+Arles" target="_blank" rel="noreferrer noopener">
             <MapPin /> Voir le point de départ <ArrowUpRight />
           </a>
         </div>

@@ -3,16 +3,127 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#171713" />
+    <meta name="theme-color" content="#090909" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta name="robots" content="index, follow" />
-    <meta name="description" content="Soles Travaux, artisan à Arles : maçonnerie générale, gros œuvre, couverture, zinguerie, charpente, plaquisterie, carrelage et façades." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Soles Travaux" />
+    <meta name="description" content="Soles Travaux, artisan du bâtiment à Arles : maçonnerie, gros œuvre, toiture, charpente, plaquisterie, carrelage et façades dans un rayon de 70 km." />
+    <meta name="geo.region" content="FR-13" />
+    <meta name="geo.placename" content="Arles" />
+    <meta name="geo.position" content="43.6998359;4.627985" />
+    <link rel="canonical" href="https://soles-travaux.vercel.app/" />
+    <link rel="alternate" hreflang="fr-FR" href="https://soles-travaux.vercel.app/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" as="image" href="/images/hero.webp" type="image/webp" fetchpriority="high" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
-    <meta property="og:title" content="Soles Travaux — Maçonnerie & gros œuvre à Arles" />
-    <meta property="og:description" content="Maçonnerie, couverture, charpente et second œuvre : un savoir-faire artisanal pour bâtir et rénover durablement." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=85" />
-    <title>Soles Travaux | Maçonnerie & gros œuvre à Arles</title>
+    <meta property="og:site_name" content="Soles Travaux" />
+    <meta property="og:url" content="https://soles-travaux.vercel.app/" />
+    <meta property="og:title" content="Soles Travaux — Maçonnerie & rénovation à Arles" />
+    <meta property="og:description" content="Un artisan multi-métiers pour vos travaux de maçonnerie, toiture et second œuvre à Arles et dans un rayon de 70 km." />
+    <meta property="og:image" content="https://soles-travaux.vercel.app/og-soles-travaux.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Artisan consultant les plans d’un projet de construction" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Soles Travaux — Artisan du bâtiment à Arles" />
+    <meta name="twitter:description" content="Maçonnerie, toiture et second œuvre à Arles et dans un rayon de 70 km." />
+    <meta name="twitter:image" content="https://soles-travaux.vercel.app/og-soles-travaux.jpg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "HomeAndConstructionBusiness",
+            "@id": "https://soles-travaux.vercel.app/#business",
+            "name": "Soles Travaux",
+            "url": "https://soles-travaux.vercel.app/",
+            "image": "https://soles-travaux.vercel.app/og-soles-travaux.jpg",
+            "email": "solestravaux@gmail.com",
+            "telephone": "+33646040659",
+            "identifier": "SIREN 951 560 846",
+            "description": "Artisan du bâtiment à Arles spécialisé en maçonnerie, gros œuvre, couverture, zinguerie, charpente, plaquisterie, carrelage et façades.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "8 chemin des Segonnaux",
+              "postalCode": "13200",
+              "addressLocality": "Arles",
+              "addressCountry": "FR"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 43.6998359,
+              "longitude": 4.627985
+            },
+            "areaServed": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 43.6998359,
+                "longitude": 4.627985
+              },
+              "geoRadius": 70000
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Travaux du bâtiment",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maçonnerie générale et gros œuvre" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Couverture et zinguerie" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Charpente" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Plaquisterie" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Carrelage" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Travaux de façade" } }
+              ]
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://soles-travaux.vercel.app/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Comment le prix de mon chantier est-il établi ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Chaque tarif est unique. Le chiffrage tient compte de l’état du bâti, des surfaces, des matériaux, de l’accès et des contraintes techniques. Aucun prix ferme n’est généré automatiquement." }
+              },
+              {
+                "@type": "Question",
+                "name": "Dans quelle zone intervenez-vous ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Soles Travaux intervient autour d’Arles dans un rayon indicatif de 70 km. La faisabilité dépend aussi de la nature et de la durée du chantier ; elle est confirmée lors du premier échange." }
+              },
+              {
+                "@type": "Question",
+                "name": "Une visite sur place est-elle obligatoire ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Elle n’est pas systématique pour un premier avis, mais elle est souvent nécessaire avant un devis ferme afin de contrôler les supports, les accès et les métrés." }
+              },
+              {
+                "@type": "Question",
+                "name": "Quels types de travaux prenez-vous en charge ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Maçonnerie et gros œuvre, couverture et zinguerie, charpente, plaquisterie, carrelage et façades. Pour un projet qui combine plusieurs métiers, vous conservez un interlocuteur unique." }
+              },
+              {
+                "@type": "Question",
+                "name": "Puis-je envoyer des photos de mon projet ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Oui. Décrivez d’abord votre besoin dans le formulaire. Si vous choisissez l’e-mail, vous pourrez ensuite répondre au message de confirmation en joignant vos photos et documents utiles." }
+              },
+              {
+                "@type": "Question",
+                "name": "Comment vais-je recevoir mon devis ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Vous choisissez le canal qui vous convient : e-mail, téléphone, ou les deux. Le téléphone sert à préciser le besoin ; le document de devis est ensuite transmis par écrit lorsqu’il est prêt." }
+              },
+              {
+                "@type": "Question",
+                "name": "Quels délais faut-il prévoir ?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Ils varient selon la disponibilité, l’ampleur des travaux, les approvisionnements et les contraintes du chantier. Après étude, Soles Travaux vous communique un calendrier réaliste plutôt qu’un délai générique." }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <title>Soles Travaux | Maçonnerie & rénovation à Arles</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Aller au contenu</a>

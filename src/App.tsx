@@ -12,14 +12,12 @@ import {
   Phone,
   Ruler,
   ShieldCheck,
-  Sparkles,
   Wrench,
   X,
 } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { lazy, Suspense, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { BeforeAfter } from "@/components/BeforeAfter"
 import { FaqSection } from "@/components/FaqSection"
 import { LegalSection } from "@/components/LegalSection"
 import { PortfolioCarousel, type Project } from "@/components/PortfolioCarousel"
@@ -84,36 +82,40 @@ const services = [
 
 const projects: Project[] = [
   {
-    title: "Élévation & gros œuvre",
+    title: "Murs & gros œuvre",
     category: "Maçonnerie générale",
     group: "Gros œuvre",
-    description: "Une structure exécutée avec rigueur, du premier traçage jusqu’aux ouvrages prêts à recevoir les finitions.",
+    description: "Fondations, dalles et élévations demandent des supports contrôlés, des niveaux justes et une exécution régulière.",
     image: "/images/project-masonry.webp",
-    alt: "Chantier de maçonnerie et de gros œuvre",
+    alt: "Maçon appliquant du mortier sur un mur en blocs de béton",
+    sourceUrl: "https://www.pexels.com/photo/man-building-wall-10383580/",
   },
   {
-    title: "Toiture bien protégée",
+    title: "Toiture protégée",
     category: "Couverture & zinguerie",
     group: "Toiture",
-    description: "Une intervention pensée pour la durabilité de la toiture et la bonne gestion des eaux pluviales.",
+    description: "Couverture, reprises et évacuation des eaux sont pensées ensemble pour préserver durablement le bâti.",
     image: "/images/project-roofing.webp",
-    alt: "Travaux de couverture sur une toiture",
+    alt: "Couvreur posant des éléments de toiture sur une charpente",
+    sourceUrl: "https://www.pexels.com/photo/roofer-working-on-roof-installation-with-safety-gear-37623622/",
   },
   {
-    title: "Volumes restructurés",
+    title: "Cloisons & volumes",
     category: "Plaquisterie",
     group: "Intérieurs",
-    description: "Cloisons et doublages redessinent l’espace avec des aplombs propres et des supports prêts à finir.",
+    description: "Cloisons, doublages et plafonds structurent les pièces avant la préparation minutieuse des finitions.",
     image: "/images/project-interior.webp",
-    alt: "Artisan travaillant sur un aménagement intérieur",
+    alt: "Plaquiste ajustant un panneau dans un intérieur en rénovation",
+    sourceUrl: "https://www.pexels.com/photo/a-man-fixing-the-wall-4981812/",
   },
   {
-    title: "Pose nette, lignes durables",
+    title: "Pose au cordeau",
     category: "Carrelage & finitions",
     group: "Finitions",
-    description: "Calepinage, alignements et joints réguliers : la qualité finale se joue dans chaque détail de pose.",
+    description: "Calepinage, alignements et joints réguliers : la qualité d’une pose se lit dans chaque ligne.",
     image: "/images/project-tiling.webp",
-    alt: "Carrelage mural aux finitions contemporaines",
+    alt: "Carreleurs alignant des carreaux dans une pièce en rénovation",
+    sourceUrl: "https://www.pexels.com/photo/two-carpenters-in-a-bathroom-24357101/",
   },
 ]
 
@@ -198,14 +200,18 @@ function Header() {
         </div>
         <div className="mobile-actions">
           <a href={`tel:${PHONE_LINK}`} aria-label={`Appeler Soles Travaux au ${PHONE_DISPLAY}`}><Phone /></a>
-          <button className="menu-button" type="button" onClick={() => setIsOpen(true)} aria-label="Ouvrir le menu" aria-expanded={isOpen}><Menu /></button>
+          <button className="menu-button" type="button" onClick={() => setIsOpen(true)} aria-label="Ouvrir le menu" aria-expanded={isOpen} aria-controls="mobile-menu"><Menu /></button>
         </div>
       </header>
 
       {createPortal(<AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             className="mobile-menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu principal"
             initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
             animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
             exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
@@ -243,6 +249,7 @@ function Header() {
 function App() {
   const heroRef = useRef<HTMLElement>(null)
   const reduceMotion = useReducedMotion()
+  const { scrollYProgress: pageProgress } = useScroll()
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] })
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 120])
   const heroOpacity = useTransform(scrollYProgress, [0, 0.86], [1, 0.2])
@@ -250,24 +257,25 @@ function App() {
   return (
     <>
       <Header />
+      <motion.div className="page-progress" style={{ scaleX: pageProgress }} aria-hidden="true" />
       <main id="main">
         <section id="accueil" className="hero" ref={heroRef}>
           <motion.div className="hero__media" style={reduceMotion ? undefined : { y: heroY }} aria-hidden="true">
-            <img src="/images/hero.webp" alt="" fetchPriority="high" />
+            <img src="/images/hero.webp" alt="" width="2200" height="1238" fetchPriority="high" />
           </motion.div>
           <div className="hero__veil" aria-hidden="true" />
           <div className="hero__grid" aria-hidden="true" />
 
           <motion.div className="hero__content shell" style={reduceMotion ? undefined : { opacity: heroOpacity }}>
             <motion.p className="hero__kicker" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
-              <span /> Maçonnerie · Couverture · Second œuvre
+              <span /> Artisan du bâtiment à Arles · 70 km autour
             </motion.p>
             <h1>
-              <span className="hero__line-mask"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}>Bâtir solide.</motion.span></span>
-              <span className="hero__line-mask hero__line-mask--gold"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ duration: 0.85, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}>Rénover durable.</motion.span></span>
+              <span className="hero__line-mask"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}>Maçonnerie à Arles.</motion.span></span>
+              <span className="hero__line-mask hero__line-mask--gold"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ duration: 0.85, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}>Bâtir. Rénover.</motion.span></span>
             </h1>
             <motion.div className="hero__bottom" initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.62 }}>
-              <p>Un artisan multi-métiers basé à Arles, pour des ouvrages solides et des chantiers suivis de près.</p>
+              <p>Maçonnerie, toiture et second œuvre : un interlocuteur unique pour vos travaux à Arles et dans un rayon de 70 km.</p>
               <div className="hero__actions">
                 <Button size="lg" asChild><a href="#devis">Demander un devis <ArrowUpRight /></a></Button>
                 <Button size="lg" variant="outline" asChild><a href="#realisations">Voir les réalisations</a></Button>
@@ -275,7 +283,6 @@ function App() {
             </motion.div>
           </motion.div>
 
-          <div className="hero__rail" aria-hidden="true"><span>SOLES / TRAVAUX / 2026</span></div>
           <a className="hero__scroll" href="#manifeste"><span>Découvrir</span><ArrowDown /></a>
         </section>
 
@@ -324,27 +331,11 @@ function App() {
           </div>
         </section>
 
-        <section className="transformation section section--anodized">
-          <div className="shell transformation__grid">
-            <div className="transformation__copy">
-              <span className="eyebrow">Voir la différence</span>
-              <h2>Construire pour que cela dure.</h2>
-              <p>Chaque chantier part d’un bâti, d’un usage et de contraintes réelles. Soles Travaux intervient avec une lecture globale, de la structure aux finitions.</p>
-              <ul>
-                <li><ShieldCheck /> Protection du bâti et des zones conservées</li>
-                <li><Ruler /> Traçage, aplombs et supports contrôlés</li>
-                <li><Sparkles /> Chantier nettoyé et réception soignée</li>
-              </ul>
-            </div>
-            <BeforeAfter />
-          </div>
-        </section>
-
         <section id="realisations" className="portfolio section section--black">
           <div className="shell">
             <div className="section-heading section-heading--portfolio">
-              <div><span className="eyebrow">Portfolio par métier</span><h2>Le travail.<br /><em>Dans le détail.</em></h2></div>
-              <p>Photographies d’ambiance temporaires, à remplacer progressivement par les vrais chantiers de Soles Travaux.</p>
+              <div><span className="eyebrow">Portfolio par métier</span><h2>Les gestes.<br /><em>Dans le détail.</em></h2></div>
+              <p>Visuels d’illustration issus de Pexels, sélectionnés pour représenter chaque métier. Ils seront remplacés progressivement par les chantiers Soles Travaux.</p>
             </div>
             <PortfolioCarousel projects={projects} />
           </div>
@@ -380,10 +371,16 @@ function App() {
           <ServiceAreaMap />
         </Suspense>
 
-        <section className="promise section section--gold">
-          <div className="shell promise__grid">
-            <div><HardHat /><span>Soles Travaux</span></div>
-            <blockquote>“Un bâtiment solide se reconnaît à ce que l’on voit — et surtout à tout ce qui a été bien fait derrière.”</blockquote>
+        <section className="cta-band section section--gold">
+          <div className="shell cta-band__grid">
+            <div>
+              <span className="eyebrow">Parlons du chantier</span>
+              <h2>Un projet précis mérite une réponse <em>personnalisée.</em></h2>
+            </div>
+            <div className="cta-band__actions">
+              <Button size="lg" variant="light" asChild><a href="#devis">Décrire mon projet <ArrowUpRight /></a></Button>
+              <a href={`tel:${PHONE_LINK}`}><Phone /> {PHONE_DISPLAY}</a>
+            </div>
           </div>
         </section>
 
@@ -397,7 +394,7 @@ function App() {
               <p>Chaque chantier est unique. Décrivez votre besoin, choisissez une réponse par e-mail, téléphone ou les deux, puis Soles Travaux étudiera votre demande individuellement.</p>
               <a href={`tel:${PHONE_LINK}`} className="contact__phone"><Phone /> {PHONE_DISPLAY}<ArrowUpRight /></a>
               <a href={`mailto:${EMAIL}`} className="contact__email"><Mail /> {EMAIL}<ArrowUpRight /></a>
-              <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+S%C3%A9gonaux+13200+Arles" target="_blank" rel="noreferrer noopener" className="contact__address"><MapPin /> 8 chemin des Ségonaux, 13200 Arles<ArrowUpRight /></a>
+              <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+Segonnaux+13200+Arles" target="_blank" rel="noreferrer noopener" className="contact__address"><MapPin /> 8 chemin des Segonnaux, 13200 Arles<ArrowUpRight /></a>
             </div>
             <QuoteRequestForm />
           </div>
@@ -419,9 +416,14 @@ function App() {
         </nav>
         <div className="shell site-footer__legal">
           <p>SOLES — Entrepreneur individuel · SIREN 951 560 846 · SIRET 951 560 846 00010 · APE 4399C</p>
-          <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+S%C3%A9gonaux+13200+Arles" target="_blank" rel="noreferrer noopener">8 chemin des Ségonaux, 13200 Arles</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+Segonnaux+13200+Arles" target="_blank" rel="noreferrer noopener">8 chemin des Segonnaux, 13200 Arles</a>
         </div>
       </footer>
+
+      <nav className="mobile-quick-actions" aria-label="Actions rapides">
+        <a href={`tel:${PHONE_LINK}`}><Phone /> Appeler</a>
+        <a href="#devis">Demander un devis <ArrowUpRight /></a>
+      </nav>
     </>
   )
 }
