@@ -1,5 +1,4 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import { ArrowUpRight } from "lucide-react"
 import { useMemo, useState, type PointerEvent } from "react"
 
 export interface Project {
@@ -8,7 +7,6 @@ export interface Project {
   group: string
   image: string
   alt: string
-  sourceUrl: string
 }
 
 interface PortfolioGalleryProps {
@@ -82,9 +80,6 @@ export function PortfolioGallery({ projects }: PortfolioGalleryProps) {
                   <p>{project.category}</p>
                   <h3>{project.title}</h3>
                 </div>
-                <a href={project.sourceUrl} target="_blank" rel="noreferrer noopener" aria-label={`Source Pexels de l’image ${project.title}`}>
-                  Pexels <ArrowUpRight />
-                </a>
               </div>
             </motion.article>
           ))}

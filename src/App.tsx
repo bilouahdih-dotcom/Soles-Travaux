@@ -1,18 +1,18 @@
 import {
   ArrowDown,
   ArrowUpRight,
-  Brush,
-  Building2,
+  BrickWall,
   Check,
   ChevronRight,
-  HardHat,
+  DraftingCompass,
+  Grid3X3,
+  House,
   Mail,
   MapPin,
   Menu,
+  PaintRoller,
+  PanelsTopLeft,
   Phone,
-  Ruler,
-  ShieldCheck,
-  Wrench,
   X,
 } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react"
@@ -46,37 +46,37 @@ const services = [
     number: "01",
     title: "Maçonnerie & gros œuvre",
     description: "Fondations, élévation, dalles et ouvrages structurels réalisés avec méthode et précision.",
-    icon: HardHat,
+    icon: BrickWall,
   },
   {
     number: "02",
     title: "Couverture & zinguerie",
     description: "Protection durable du bâti, travaux de toiture et évacuation maîtrisée des eaux pluviales.",
-    icon: ShieldCheck,
+    icon: House,
   },
   {
     number: "03",
     title: "Charpente",
     description: "Création, reprise et adaptation des structures bois pour des ouvrages fiables et pérennes.",
-    icon: Ruler,
+    icon: DraftingCompass,
   },
   {
     number: "04",
     title: "Plaquisterie",
     description: "Cloisons, doublages, faux plafonds et préparation des volumes intérieurs avant finition.",
-    icon: Wrench,
+    icon: PanelsTopLeft,
   },
   {
     number: "05",
     title: "Carrelage",
     description: "Préparation des supports et pose soignée pour des sols et murs nets, résistants et alignés.",
-    icon: Brush,
+    icon: Grid3X3,
   },
   {
     number: "06",
     title: "Façades",
     description: "Réparation, préparation et remise en état des façades pour protéger et valoriser le bâtiment.",
-    icon: Building2,
+    icon: PaintRoller,
   },
 ]
 
@@ -87,7 +87,6 @@ const projects: Project[] = [
     group: "Maçonnerie",
     image: "/images/project-masonry.webp",
     alt: "Maçon appliquant du mortier sur un mur en blocs de béton",
-    sourceUrl: "https://www.pexels.com/photo/man-building-wall-10383580/",
   },
   {
     title: "Mortier & briques",
@@ -95,7 +94,6 @@ const projects: Project[] = [
     group: "Maçonnerie",
     image: "/images/gallery-masonry-02.webp",
     alt: "Maçon montant un mur de briques avec du mortier",
-    sourceUrl: "https://www.pexels.com/photo/worker-building-brick-wall-at-construction-site-35281188/",
   },
   {
     title: "Application du mortier",
@@ -103,7 +101,6 @@ const projects: Project[] = [
     group: "Maçonnerie",
     image: "/images/gallery-masonry-03.webp",
     alt: "Artisan appliquant du ciment sur un mur en blocs",
-    sourceUrl: "https://www.pexels.com/photo/worker-on-construction-site-10383579/",
   },
   {
     title: "Structure maçonnée",
@@ -111,7 +108,6 @@ const projects: Project[] = [
     group: "Maçonnerie",
     image: "/images/gallery-masonry-04.webp",
     alt: "Ouvrier construisant la partie haute d’un mur maçonné",
-    sourceUrl: "https://www.pexels.com/photo/a-construction-worker-using-a-hammer-on-concrete-wall-11977314/",
   },
   {
     title: "Pose des tuiles",
@@ -119,7 +115,6 @@ const projects: Project[] = [
     group: "Toiture",
     image: "/images/project-roofing.webp",
     alt: "Couvreur posant des tuiles sur une toiture inclinée",
-    sourceUrl: "https://www.pexels.com/photo/roofer-working-on-roof-installation-with-safety-gear-37623622/",
   },
   {
     title: "Couverture traditionnelle",
@@ -127,7 +122,6 @@ const projects: Project[] = [
     group: "Toiture",
     image: "/images/gallery-roofing-02.webp",
     alt: "Deux couvreurs travaillant sur une toiture traditionnelle",
-    sourceUrl: "https://www.pexels.com/photo/construction-workers-installing-roof-tiles-on-building-33944130/",
   },
   {
     title: "Charpente bois",
@@ -135,7 +129,6 @@ const projects: Project[] = [
     group: "Toiture",
     image: "/images/gallery-roofing-03.webp",
     alt: "Charpentiers assemblant une structure de toiture en bois",
-    sourceUrl: "https://www.pexels.com/photo/roof-construction-with-wooden-framework-and-workers-31763537/",
   },
   {
     title: "Réfection de toiture",
@@ -143,7 +136,6 @@ const projects: Project[] = [
     group: "Toiture",
     image: "/images/gallery-roofing-04.webp",
     alt: "Deux professionnels réparant une couverture de toiture",
-    sourceUrl: "https://www.pexels.com/photo/construction-workers-repairing-roof-tiles-outdoors-37623620/",
   },
   {
     title: "Pose de plaques",
@@ -151,7 +143,6 @@ const projects: Project[] = [
     group: "Intérieurs",
     image: "/images/project-interior.webp",
     alt: "Plaquiste ajustant un panneau dans un intérieur en rénovation",
-    sourceUrl: "https://www.pexels.com/photo/a-man-fixing-the-wall-4981812/",
   },
   {
     title: "Découpe sur mesure",
@@ -159,7 +150,6 @@ const projects: Project[] = [
     group: "Intérieurs",
     image: "/images/gallery-interior-02.webp",
     alt: "Artisan découpant une plaque de plâtre sur un chantier intérieur",
-    sourceUrl: "https://www.pexels.com/photo/man-cutting-a-plasterboard-11427405/",
   },
   {
     title: "Préparation des plafonds",
@@ -167,7 +157,6 @@ const projects: Project[] = [
     group: "Intérieurs",
     image: "/images/gallery-interior-03.webp",
     alt: "Artisan préparant un plafond en plaques de plâtre",
-    sourceUrl: "https://www.pexels.com/photo/man-person-people-construction-6473977/",
   },
   {
     title: "Enduits & lissage",
@@ -175,7 +164,6 @@ const projects: Project[] = [
     group: "Intérieurs",
     image: "/images/gallery-interior-04.webp",
     alt: "Professionnel lissant un mur intérieur blanc",
-    sourceUrl: "https://www.pexels.com/photo/a-construction-worker-working-on-the-wall-of-a-house-5493658/",
   },
   {
     title: "Pose au cordeau",
@@ -183,7 +171,6 @@ const projects: Project[] = [
     group: "Finitions",
     image: "/images/project-tiling.webp",
     alt: "Carreleurs alignant des carreaux dans une pièce en rénovation",
-    sourceUrl: "https://www.pexels.com/photo/two-carpenters-in-a-bathroom-24357101/",
   },
   {
     title: "Grand format",
@@ -191,7 +178,6 @@ const projects: Project[] = [
     group: "Finitions",
     image: "/images/gallery-finishing-02.webp",
     alt: "Carreleur posant de grands carreaux sur un sol intérieur",
-    sourceUrl: "https://www.pexels.com/photo/construction-worker-laying-tile-in-renovation-project-29181494/",
   },
   {
     title: "Outils & précision",
@@ -199,7 +185,6 @@ const projects: Project[] = [
     group: "Finitions",
     image: "/images/gallery-finishing-03.webp",
     alt: "Outils professionnels disposés sur un sol carrelé",
-    sourceUrl: "https://www.pexels.com/photo/tools-on-tile-floor-11263935/",
   },
   {
     title: "Faïence & crédence",
@@ -207,7 +192,6 @@ const projects: Project[] = [
     group: "Finitions",
     image: "/images/gallery-finishing-04.webp",
     alt: "Pose et sélection de carreaux pour une crédence de cuisine",
-    sourceUrl: "https://www.pexels.com/photo/person-choosing-a-tile-design-on-wall-8293686/",
   },
 ]
 
@@ -382,8 +366,8 @@ function App() {
 
         <section id="manifeste" className="manifesto section section--light">
           <div className="shell manifesto__grid">
-            <div className="section-index"><span>01</span><p>Notre exigence</p></div>
-            <div>
+            <div className="manifesto__content">
+              <span className="eyebrow">Notre exigence</span>
               <TextReveal text="Un ouvrage durable commence bien avant la finition : il se prépare, se mesure et se construit avec méthode." />
               <div className="manifesto__proofs">
                 <p><Check /> Artisan inscrit au RNE</p>
@@ -430,10 +414,10 @@ function App() {
             <div className="portfolio__heading">
               <span className="eyebrow">Portfolio par métier</span>
               <h2>Le geste<span>.</span> Le résultat.</h2>
-              <p>Une sélection visuelle par savoir-faire, pensée dans l’esprit éditorial de Liv Rénovation.</p>
+              <p>Une galerie d’inspiration organisée par savoir-faire, en attendant les photographies des chantiers Soles Travaux.</p>
             </div>
             <PortfolioGallery projects={projects} />
-            <p className="portfolio__disclaimer">Visuels d’illustration issus de Pexels. Ils seront remplacés progressivement par les chantiers Soles Travaux.</p>
+            <p className="portfolio__notice">Images d’ambiance : elles ne présentent pas des réalisations de Soles Travaux.</p>
           </div>
         </section>
 
@@ -488,9 +472,17 @@ function App() {
               <span className="eyebrow">Demande de devis</span>
               <h2>Un chiffrage adapté à votre <em>projet.</em></h2>
               <p>Chaque chantier est unique. Décrivez votre besoin, choisissez une réponse par e-mail, téléphone ou les deux, puis Soles Travaux étudiera votre demande individuellement.</p>
-              <a href={`tel:${PHONE_LINK}`} className="contact__phone"><Phone /> {PHONE_DISPLAY}<ArrowUpRight /></a>
-              <a href={`mailto:${EMAIL}`} className="contact__email"><Mail /> {EMAIL}<ArrowUpRight /></a>
-              <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+Segonnaux+13200+Arles" target="_blank" rel="noreferrer noopener" className="contact__address"><MapPin /> 8 chemin des Segonnaux, 13200 Arles<ArrowUpRight /></a>
+              <div className="contact__details">
+                <a href={`tel:${PHONE_LINK}`} className="contact__detail">
+                  <span className="contact__detail-icon"><Phone /></span><span><small>Téléphone</small><strong>{PHONE_DISPLAY}</strong></span><ArrowUpRight />
+                </a>
+                <a href={`mailto:${EMAIL}`} className="contact__detail">
+                  <span className="contact__detail-icon"><Mail /></span><span><small>E-mail</small><strong>{EMAIL}</strong></span><ArrowUpRight />
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=8+Chemin+des+Segonnaux+13200+Arles" target="_blank" rel="noreferrer noopener" className="contact__detail">
+                  <span className="contact__detail-icon"><MapPin /></span><span><small>Atelier</small><strong>8 chemin des Segonnaux, 13200 Arles</strong></span><ArrowUpRight />
+                </a>
+              </div>
             </div>
             <QuoteRequestForm />
           </div>
