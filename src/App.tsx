@@ -20,7 +20,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from "react"
 import { createPortal } from "react-dom"
 import { FaqSection } from "@/components/FaqSection"
 import { LegalSection } from "@/components/LegalSection"
-import { PortfolioCarousel, type Project } from "@/components/PortfolioCarousel"
+import { PortfolioGallery, type Project } from "@/components/PortfolioGallery"
 import { QuoteRequestForm } from "@/components/QuoteRequestForm"
 import { TextReveal } from "@/components/TextReveal"
 import { Button } from "@/components/ui/button"
@@ -82,40 +82,132 @@ const services = [
 
 const projects: Project[] = [
   {
-    title: "Murs & gros œuvre",
+    title: "Élévation de murs",
     category: "Maçonnerie générale",
-    group: "Gros œuvre",
-    description: "Fondations, dalles et élévations demandent des supports contrôlés, des niveaux justes et une exécution régulière.",
+    group: "Maçonnerie",
     image: "/images/project-masonry.webp",
     alt: "Maçon appliquant du mortier sur un mur en blocs de béton",
     sourceUrl: "https://www.pexels.com/photo/man-building-wall-10383580/",
   },
   {
-    title: "Toiture protégée",
-    category: "Couverture & zinguerie",
+    title: "Mortier & briques",
+    category: "Montage traditionnel",
+    group: "Maçonnerie",
+    image: "/images/gallery-masonry-02.webp",
+    alt: "Maçon montant un mur de briques avec du mortier",
+    sourceUrl: "https://www.pexels.com/photo/worker-building-brick-wall-at-construction-site-35281188/",
+  },
+  {
+    title: "Application du mortier",
+    category: "Gros œuvre",
+    group: "Maçonnerie",
+    image: "/images/gallery-masonry-03.webp",
+    alt: "Artisan appliquant du ciment sur un mur en blocs",
+    sourceUrl: "https://www.pexels.com/photo/worker-on-construction-site-10383579/",
+  },
+  {
+    title: "Structure maçonnée",
+    category: "Élévation",
+    group: "Maçonnerie",
+    image: "/images/gallery-masonry-04.webp",
+    alt: "Ouvrier construisant la partie haute d’un mur maçonné",
+    sourceUrl: "https://www.pexels.com/photo/a-construction-worker-using-a-hammer-on-concrete-wall-11977314/",
+  },
+  {
+    title: "Pose des tuiles",
+    category: "Couverture",
     group: "Toiture",
-    description: "Couverture, reprises et évacuation des eaux sont pensées ensemble pour préserver durablement le bâti.",
     image: "/images/project-roofing.webp",
-    alt: "Couvreur posant des éléments de toiture sur une charpente",
+    alt: "Couvreur posant des tuiles sur une toiture inclinée",
     sourceUrl: "https://www.pexels.com/photo/roofer-working-on-roof-installation-with-safety-gear-37623622/",
   },
   {
-    title: "Cloisons & volumes",
+    title: "Couverture traditionnelle",
+    category: "Réfection",
+    group: "Toiture",
+    image: "/images/gallery-roofing-02.webp",
+    alt: "Deux couvreurs travaillant sur une toiture traditionnelle",
+    sourceUrl: "https://www.pexels.com/photo/construction-workers-installing-roof-tiles-on-building-33944130/",
+  },
+  {
+    title: "Charpente bois",
+    category: "Structure",
+    group: "Toiture",
+    image: "/images/gallery-roofing-03.webp",
+    alt: "Charpentiers assemblant une structure de toiture en bois",
+    sourceUrl: "https://www.pexels.com/photo/roof-construction-with-wooden-framework-and-workers-31763537/",
+  },
+  {
+    title: "Réfection de toiture",
+    category: "Entretien",
+    group: "Toiture",
+    image: "/images/gallery-roofing-04.webp",
+    alt: "Deux professionnels réparant une couverture de toiture",
+    sourceUrl: "https://www.pexels.com/photo/construction-workers-repairing-roof-tiles-outdoors-37623620/",
+  },
+  {
+    title: "Pose de plaques",
     category: "Plaquisterie",
     group: "Intérieurs",
-    description: "Cloisons, doublages et plafonds structurent les pièces avant la préparation minutieuse des finitions.",
     image: "/images/project-interior.webp",
     alt: "Plaquiste ajustant un panneau dans un intérieur en rénovation",
     sourceUrl: "https://www.pexels.com/photo/a-man-fixing-the-wall-4981812/",
   },
   {
+    title: "Découpe sur mesure",
+    category: "Plaques de plâtre",
+    group: "Intérieurs",
+    image: "/images/gallery-interior-02.webp",
+    alt: "Artisan découpant une plaque de plâtre sur un chantier intérieur",
+    sourceUrl: "https://www.pexels.com/photo/man-cutting-a-plasterboard-11427405/",
+  },
+  {
+    title: "Préparation des plafonds",
+    category: "Ponçage",
+    group: "Intérieurs",
+    image: "/images/gallery-interior-03.webp",
+    alt: "Artisan préparant un plafond en plaques de plâtre",
+    sourceUrl: "https://www.pexels.com/photo/man-person-people-construction-6473977/",
+  },
+  {
+    title: "Enduits & lissage",
+    category: "Préparation",
+    group: "Intérieurs",
+    image: "/images/gallery-interior-04.webp",
+    alt: "Professionnel lissant un mur intérieur blanc",
+    sourceUrl: "https://www.pexels.com/photo/a-construction-worker-working-on-the-wall-of-a-house-5493658/",
+  },
+  {
     title: "Pose au cordeau",
-    category: "Carrelage & finitions",
+    category: "Carrelage",
     group: "Finitions",
-    description: "Calepinage, alignements et joints réguliers : la qualité d’une pose se lit dans chaque ligne.",
     image: "/images/project-tiling.webp",
     alt: "Carreleurs alignant des carreaux dans une pièce en rénovation",
     sourceUrl: "https://www.pexels.com/photo/two-carpenters-in-a-bathroom-24357101/",
+  },
+  {
+    title: "Grand format",
+    category: "Pose de sols",
+    group: "Finitions",
+    image: "/images/gallery-finishing-02.webp",
+    alt: "Carreleur posant de grands carreaux sur un sol intérieur",
+    sourceUrl: "https://www.pexels.com/photo/construction-worker-laying-tile-in-renovation-project-29181494/",
+  },
+  {
+    title: "Outils & précision",
+    category: "Détails de pose",
+    group: "Finitions",
+    image: "/images/gallery-finishing-03.webp",
+    alt: "Outils professionnels disposés sur un sol carrelé",
+    sourceUrl: "https://www.pexels.com/photo/tools-on-tile-floor-11263935/",
+  },
+  {
+    title: "Faïence & crédence",
+    category: "Revêtements muraux",
+    group: "Finitions",
+    image: "/images/gallery-finishing-04.webp",
+    alt: "Pose et sélection de carreaux pour une crédence de cuisine",
+    sourceUrl: "https://www.pexels.com/photo/person-choosing-a-tile-design-on-wall-8293686/",
   },
 ]
 
@@ -178,8 +270,7 @@ function Header() {
     <>
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
         <a className="brand" href="#accueil" aria-label="Soles Travaux, retour à l’accueil">
-          <span className="brand__mark">S</span>
-          <span className="brand__name">Soles<span>Travaux</span></span>
+          <img className="brand__logo" src="/images/soles-travaux-logo-light.png" alt="" width="900" height="358" />
         </a>
 
         <nav className="desktop-nav" aria-label="Navigation principale">
@@ -195,7 +286,10 @@ function Header() {
         </nav>
 
         <div className="header-actions">
-          <a className="header-phone" href={`tel:${PHONE_LINK}`}><Phone /><span><small>Appeler</small>{PHONE_DISPLAY}</span></a>
+          <a className="header-phone" href={`tel:${PHONE_LINK}`} aria-label={`Appeler Soles Travaux au ${PHONE_DISPLAY}`}>
+            <span className="header-phone__icon"><Phone /></span>
+            <span className="header-phone__copy"><small>Un projet ? Appelez-nous</small><strong>{PHONE_DISPLAY}</strong></span>
+          </a>
           <Button size="sm" asChild><a href="#devis">Devis en ligne</a></Button>
         </div>
         <div className="mobile-actions">
@@ -218,7 +312,7 @@ function Header() {
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mobile-menu__top">
-              <span className="brand__name">Soles<span>Travaux</span></span>
+              <img className="brand__logo" src="/images/soles-travaux-logo-light.png" alt="Soles Travaux" width="900" height="358" />
               <button type="button" onClick={() => setIsOpen(false)} aria-label="Fermer le menu"><X /></button>
             </div>
             <nav aria-label="Navigation mobile">
@@ -333,11 +427,13 @@ function App() {
 
         <section id="realisations" className="portfolio section section--black">
           <div className="shell">
-            <div className="section-heading section-heading--portfolio">
-              <div><span className="eyebrow">Portfolio par métier</span><h2>Les gestes.<br /><em>Dans le détail.</em></h2></div>
-              <p>Visuels d’illustration issus de Pexels, sélectionnés pour représenter chaque métier. Ils seront remplacés progressivement par les chantiers Soles Travaux.</p>
+            <div className="portfolio__heading">
+              <span className="eyebrow">Portfolio par métier</span>
+              <h2>Le geste<span>.</span> Le résultat.</h2>
+              <p>Une sélection visuelle par savoir-faire, pensée dans l’esprit éditorial de Liv Rénovation.</p>
             </div>
-            <PortfolioCarousel projects={projects} />
+            <PortfolioGallery projects={projects} />
+            <p className="portfolio__disclaimer">Visuels d’illustration issus de Pexels. Ils seront remplacés progressivement par les chantiers Soles Travaux.</p>
           </div>
         </section>
 
@@ -404,7 +500,9 @@ function App() {
 
       <footer className="site-footer">
         <div className="shell site-footer__grid">
-          <a className="brand brand--footer" href="#accueil"><span className="brand__mark">S</span><span className="brand__name">Soles<span>Travaux</span></span></a>
+          <a className="brand brand--footer" href="#accueil" aria-label="Soles Travaux, retour en haut de page">
+            <img className="brand__logo" src="/images/soles-travaux-logo-light.png" alt="" width="900" height="358" loading="lazy" decoding="async" />
+          </a>
           <p>Maçonnerie · Couverture · Second œuvre</p>
           <div className="site-footer__contacts"><a href={`tel:${PHONE_LINK}`}>{PHONE_DISPLAY}</a><a href={`mailto:${EMAIL}`}>{EMAIL}</a></div>
           <p>© {new Date().getFullYear()} Soles Travaux</p>
