@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
-import { useMemo, useState, type PointerEvent } from "react"
+import { useMemo, useState } from "react"
 
 export interface Project {
   title: string
@@ -21,12 +21,6 @@ export function PortfolioGallery({ projects }: PortfolioGalleryProps) {
     () => projects.filter((project) => project.group === activeGroup),
     [activeGroup, projects],
   )
-
-  const updateSpotlight = (event: PointerEvent<HTMLElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect()
-    event.currentTarget.style.setProperty("--spotlight-x", `${event.clientX - bounds.left}px`)
-    event.currentTarget.style.setProperty("--spotlight-y", `${event.clientY - bounds.top}px`)
-  }
 
   return (
     <div className="portfolio-gallery" role="region" aria-label="Galerie de réalisations par métier">
@@ -58,11 +52,10 @@ export function PortfolioGallery({ projects }: PortfolioGalleryProps) {
               className="portfolio-card"
               key={project.image}
               layout
-              initial={reduceMotion ? false : { opacity: 0, y: 26, scale: 0.96, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -18, scale: 0.96, filter: "blur(8px)" }}
+              initial={reduceMotion ? false : { opacity: 0, y: 26, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -18, scale: 0.96 }}
               transition={{ duration: 0.52, delay: reduceMotion ? 0 : index * 0.055, ease: [0.16, 1, 0.3, 1] }}
-              onPointerMove={updateSpotlight}
             >
               <img
                 src={project.image}
