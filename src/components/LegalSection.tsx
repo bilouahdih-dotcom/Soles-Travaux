@@ -16,7 +16,7 @@ export function LegalSection() {
           <p><strong>Hébergement :</strong> Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.</p>
           <p><strong>Service d’envoi :</strong> Resend, opéré par Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, États-Unis.</p>
           <p>Les textes, la structure, les signes distinctifs et les futures photographies de chantiers sont protégés. Toute reproduction non autorisée est interdite. Une demande transmise sur le site ne constitue ni un devis ni une offre contractuelle.</p>
-          <p><strong>Crédits photographiques :</strong> les visuels d’illustration du portfolio proviennent de Pexels. Chaque source est accessible directement depuis la photographie concernée.</p>
+          <p><strong>Crédits photographiques :</strong> les images actuellement présentées dans la galerie sont des visuels d’ambiance auto-hébergés. Elles ne sont pas présentées comme des chantiers réalisés par Soles Travaux.</p>
           <p className="legal-modal__date">Dernière mise à jour : 19 juillet 2026.</p>
         </article>
       </section>
@@ -45,7 +45,7 @@ export function LegalSection() {
           <div className="legal-modal__top"><span><Cookie /> Cookies & services tiers</span><a href="#legal-links" aria-label="Fermer"><X /></a></div>
           <h2 id="cookies-title">Politique cookies</h2>
           <p>Cette version n’utilise aucun cookie publicitaire, aucun outil de mesure d’audience et aucun traceur soumis au consentement. Aucun bandeau de consentement n’est donc affiché.</p>
-          <p>Les photographies du portfolio sont clairement identifiées comme des visuels d’illustration issus de Pexels. Elles sont auto-hébergées dans le projet afin de limiter les appels à des services tiers et seront remplacées progressivement par les réalisations réelles de Soles Travaux.</p>
+          <p>Les images d’ambiance de la galerie sont auto-hébergées afin de limiter les appels à des services tiers. Elles seront remplacées progressivement par des photographies de chantiers dont les droits d’utilisation auront été vérifiés.</p>
           <p>Resend est sollicité uniquement lorsque l’utilisateur envoie volontairement le formulaire. Les e-mails sont transactionnels et ne servent pas à inscrire le demandeur à une liste marketing.</p>
           <p>La carte OpenStreetMap est chargée uniquement lorsque l’internaute approche de la section « Zone d’intervention ». Aucun cookie publicitaire ou de mesure d’audience n’est ajouté par le site. Les règles de confidentialité d’OpenStreetMap s’appliquent aux tuiles cartographiques.</p>
           <p>Les liens vers Google Maps, l’application e-mail ou le téléphone ne s’activent qu’après une action volontaire. Leur utilisation est ensuite régie par les politiques des services choisis par l’utilisateur.</p>

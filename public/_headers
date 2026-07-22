@@ -8,9 +8,10 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 
 /*
-  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-sZf+wh1aJXIGac/W/aFfLNGpzAj5dOe1Y+BEqEqlHzE='; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self'; style-src-attr 'unsafe-inline'; script-src 'self' 'sha256-JNsG6AhtPOCltGNA+4zKEF0VyEdJuNHZx8j2AZLxBns='; script-src-attr 'none'; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Referrer-Policy: strict-origin-when-cross-origin
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains

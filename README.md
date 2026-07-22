@@ -46,6 +46,6 @@ La fonction vérifie l’origine, le format et la taille des données, limite la
 - photographies des vrais chantiers ;
 - assurances, qualifications et avis clients vérifiables ;
 
-Les visuels temporaires du portfolio sont crédités individuellement et proviennent de Pexels. Ils ne sont pas présentés comme des chantiers réalisés par Soles Travaux.
+Les visuels temporaires du portfolio sont auto-hébergés et clairement présentés comme des images d’ambiance, pas comme des chantiers réalisés par Soles Travaux.
 
 Informations professionnelles intégrées d’après l’attestation RNE fournie : SOLES, SIREN 951 560 846, SIRET 951 560 846 00010, APE 4399C, siège à Arles.

@@ -1,8 +1,8 @@
 import { CheckCircle2, FileText, Mail, Phone, Send } from "lucide-react"
-import { type FormEvent, useState } from "react"
+import { type FormEvent, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 
-const COMPANY_PHONE = "+33646040659"
+const COMPANY_PHONE = "0646040659"
 
 const serviceOptions = {
   masonry: "Maçonnerie & gros œuvre",
@@ -20,6 +20,7 @@ export function QuoteRequestForm() {
   const [contactMode, setContactMode] = useState<ContactMode>("email")
   const [status, setStatus] = useState<SubmitStatus>("idle")
   const [feedback, setFeedback] = useState("")
+  const startedAt = useRef(Date.now())
 
   const sendRequest = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -48,6 +49,7 @@ export function QuoteRequestForm() {
           contactMode,
           consent: data.get("consent") === "on",
           company: data.get("company"),
+          startedAt: String(startedAt.current),
         }),
       })
 
@@ -60,6 +62,7 @@ export function QuoteRequestForm() {
         : "Votre demande a bien été transmise. Un e-mail de confirmation vous a été envoyé.")
       form.reset()
       setContactMode("email")
+      startedAt.current = Date.now()
     } catch (error) {
       setStatus("error")
       setFeedback(error instanceof Error ? error.message : "Une erreur est survenue. Vous pouvez aussi nous appeler directement.")
