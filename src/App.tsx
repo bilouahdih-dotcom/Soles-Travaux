@@ -274,7 +274,7 @@ function Header() {
             <span className="header-phone__icon"><Phone /></span>
             <span className="header-phone__copy"><small>Un projet ? Appelez-nous</small><strong>{PHONE_DISPLAY}</strong></span>
           </a>
-          <Button size="sm" asChild><a href="#devis">Devis en ligne</a></Button>
+          <Button className="header-quote" size="sm" asChild><a href="#devis">Devis en ligne</a></Button>
         </div>
         <div className="mobile-actions">
           <a href={`tel:${PHONE_LINK}`} aria-label={`Appeler Soles Travaux au ${PHONE_DISPLAY}`}><Phone /></a>
