@@ -24,7 +24,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self'; style-src-attr 'unsafe-inline'; script-src 'self' 'sha256-JNsG6AhtPOCltGNA+4zKEF0VyEdJuNHZx8j2AZLxBns='; script-src-attr 'none'; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; img-src 'self' data: https://tile.openstreetmap.org; style-src 'self'; style-src-attr 'unsafe-inline'; script-src 'self' 'sha256-E/xZpualaExUU4AtY2g+JlnifIL4695Q6fbgSDYy0Jo='; script-src-attr 'none'; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
         },
         {
           "key": "Permissions-Policy",
