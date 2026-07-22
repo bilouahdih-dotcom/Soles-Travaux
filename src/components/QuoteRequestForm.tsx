@@ -2,7 +2,7 @@ import { CheckCircle2, FileText, Mail, Phone, Send } from "lucide-react"
 import { type FormEvent, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 
-const COMPANY_PHONE = "+33646040659"
+const COMPANY_PHONE = "0646040659"
 
 const serviceOptions = {
   masonry: "Maçonnerie & gros œuvre",

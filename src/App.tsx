@@ -16,7 +16,7 @@ import {
   X,
 } from "lucide-react"
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react"
-import { lazy, Suspense, useEffect, useRef, useState } from "react"
+import { lazy, Suspense, useEffect, useRef, useState, type MouseEvent } from "react"
 import { createPortal } from "react-dom"
 import { FaqSection } from "@/components/FaqSection"
 import { LegalSection } from "@/components/LegalSection"
@@ -27,7 +27,12 @@ import { Button } from "@/components/ui/button"
 
 const EMAIL = "solestravaux@gmail.com"
 const PHONE_DISPLAY = "06 46 04 06 59"
-const PHONE_LINK = "+33646040659"
+const PHONE_LINK = "0646040659"
+
+const openPhoneDialer = (event: MouseEvent<HTMLAnchorElement>) => {
+  event.preventDefault()
+  window.location.href = `tel:${PHONE_LINK}`
+}
 
 const ServiceAreaMap = lazy(() =>
   import("@/components/ServiceAreaMap").then((module) => ({ default: module.ServiceAreaMap })),
@@ -511,7 +516,14 @@ function App() {
       </footer>
 
       <nav className="mobile-quick-actions" aria-label="Actions rapides">
-        <a href={`tel:${PHONE_LINK}`}><Phone /> Appeler</a>
+        <a
+          href={`tel:${PHONE_LINK}`}
+          onClick={openPhoneDialer}
+          aria-label={`Appeler Soles Travaux au ${PHONE_DISPLAY}`}
+          data-testid="mobile-call-action"
+        >
+          <Phone /> Appeler
+        </a>
         <a href="#devis">Demander un devis <ArrowUpRight /></a>
       </nav>
     </>

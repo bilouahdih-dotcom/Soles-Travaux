@@ -2245,6 +2245,8 @@ img {
     backdrop-filter: blur(16px);
   }
   .mobile-quick-actions a {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2254,6 +2256,8 @@ img {
     font-weight: 850;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+    touch-action: manipulation;
+    -webkit-touch-callout: default;
   }
   .mobile-quick-actions a + a { color: var(--black); background: var(--gold); }
   .mobile-quick-actions svg { width: 1rem; }
